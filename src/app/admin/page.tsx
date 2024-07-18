@@ -17,7 +17,7 @@ const Admin = () => {
           className={styles.backgroundImage}
         />
         <AdminPanel />
-        </div>;
+        </div>
 };
 
 export default withAuth(Admin, ['admin']);
