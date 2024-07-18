@@ -1,12 +1,11 @@
 import api from './api';
-import { Bet } from '../types/bet';
 
-export const getBets = async (): Promise<Bet[]> => {
+export const getBets = async () => {
   const response = await api.get('/bets');
   return response.data;
 };
 
-export const createBet = async (bet: { amount: number; userId: number; rouletteId: number }): Promise<Bet> => {
+export const createBet = async (bet) => {
   const response = await api.post('/bets', bet);
   return response.data;
 };
