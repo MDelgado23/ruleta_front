@@ -68,7 +68,7 @@ const PaginaUsuarios = () => {
           {userRole === 'admin' && <button onClick={handleAdmBtn}>ADM PANEL</button>} {/* Botón solo para admins */}
         </div>
         <div className={styles.buttonContainer}>
-          <button className={styles.button} onClick={handleJugarClick}>JUGAR</button>
+          <button className={styles.button} onClick={handleJugarClick}>ABRIR CHEST</button>
           <button className={styles.button}>RECARGAR MONEDAS</button>
           <button className={styles.button}>HISTORIAL DE PREMIOS</button>
           <button className={styles.button} style={{ backgroundColor: '#FF6347' }}>PRÓXIMAMENTE</button>

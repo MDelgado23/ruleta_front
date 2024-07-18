@@ -14,7 +14,7 @@
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 20px solid red;
+  border-bottom: 20px solid black;
   z-index: 1;
 }
 
@@ -25,21 +25,24 @@
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #000;
-  transition: transform 3s ease-out; /* Duración de la animación */
+  transition: transform 3s ease-out;
+  background: #fff;
 }
 
 .spinning {
-  transition: transform 3s ease-out; 
+  transition: transform 3s ease-out;
 }
 
 .segment {
   position: absolute;
   width: 50%;
   height: 50%;
-  top: 50%;
+  top: 0;
   left: 50%;
-  transform-origin: 0% 0%;
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  transform-origin: 0% 100%;
+  -webkit-clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
+  border: 1px solid #000; 
 }
 
 .label {
@@ -49,8 +52,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translate(-50%, -50%);
+  transform: translate(-30%, -70%) rotate(-45deg); /* Ajusta estos valores según sea necesario */
   white-space: nowrap;
+  font-size: 10px; /* Ajusta el tamaño de la fuente según sea necesario */
 }
 
 .spinButton {

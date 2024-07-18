@@ -1,3 +1,25 @@
+.background {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.backgroundImage {
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white; /* Para que el texto sea visible sobre el fondo oscuro */
+}
+
+
 .main {
   display: flex;
   flex-direction: column;

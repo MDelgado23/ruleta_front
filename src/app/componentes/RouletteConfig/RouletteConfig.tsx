@@ -22,7 +22,7 @@ const RouletteConfigurator: React.FC<RouletteConfiguratorProps> = ({ onSave, sel
         const prizesData = await getPrizes();
         setPrizes(prizesData);
       } catch (error) {
-        console.error('Error fetching prizes:', error);
+        console.error('Error recuperando premios (ChCfg):', error);
       }
     };
 
@@ -69,25 +69,25 @@ const RouletteConfigurator: React.FC<RouletteConfiguratorProps> = ({ onSave, sel
       description,
       prizes: selectedPrizes,
     };
-    console.log('Roulette data to save:', rouletteData);
+    console.log('Chest Data disponible para guardar:', rouletteData);
     onSave(rouletteData);
   };
 
   return (
     <div>
-      <h2>Create or Edit a Roulette</h2>
+      <h2>Crear o editar Chest</h2>
       <input
         type="text"
-        placeholder="Roulette Name"
+        placeholder="Nombre"
         value={rouletteName}
         onChange={(e) => setRouletteName(e.target.value)}
       />
       <textarea
-        placeholder="Description"
+        placeholder="Descripcion"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <h3>Select Prizes</h3>
+      <h3>Selecciona los premios</h3>
       {prizes.map((prize) => (
         <div key={prize.id}>
           <label>
@@ -100,7 +100,7 @@ const RouletteConfigurator: React.FC<RouletteConfiguratorProps> = ({ onSave, sel
           </label>
         </div>
       ))}
-      <button onClick={handleSave}>Save Roulette</button>
+      <button onClick={handleSave}>Guardar Chest</button>
     </div>
   );
 };

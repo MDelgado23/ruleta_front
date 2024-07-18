@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import styles from './backbutton.module.css';
+import styles from './BackButton.module.css';
 
 const BackButton = () => {
   const router = useRouter();
-  const home:string = '/';
+
   const handleBackClick = () => {
-    router.push(home);
+    router.back();
   };
 
   return (

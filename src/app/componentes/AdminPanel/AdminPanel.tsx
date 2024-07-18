@@ -1,4 +1,3 @@
-// src/components/AdminPanel/AdminPanel.tsx
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -11,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import Modal from '../Modal/Modal';
 import RouletteConfig from '../RouletteConfig/RouletteConfig';
 import PrizeForm from '../PrizeForm/PrizeForm';
-import BetList from '../BetList/BetList'; // Importa BetList
+import BetList from '../BetList/BetList'; 
 import { getRoulettes, createRoulette, updateRoulette, deleteRoulette } from '../../../services/rouletteService';
 import { Roulette, SelectedPrize } from '../../../types/roulette';
 
@@ -24,7 +23,7 @@ const PanelAdministrador = () => {
   const [showRolesModal, setShowRolesModal] = useState<boolean>(false);
   const [showCoinsModal, setShowCoinsModal] = useState<boolean>(false);
   const [showRouletteModal, setShowRouletteModal] = useState<boolean>(false);
-  const [showBetListModal, setShowBetListModal] = useState<boolean>(false); // Estado para manejar el modal de BetList
+  const [showBetListModal, setShowBetListModal] = useState<boolean>(false);
   const [nuevoCoins, setNuevoCoins] = useState<number>(0);
   const [selectedRoulette, setSelectedRoulette] = useState<{ id?: number; name: string; description: string; prizes: SelectedPrize[] } | null>(null);
   const [roulettes, setRoulettes] = useState<Roulette[]>([]);
@@ -145,7 +144,7 @@ const PanelAdministrador = () => {
   };
 
   const handleRegistrosBtn = () => {
-    setShowBetListModal(true); // Abre el modal de BetList
+    setShowBetListModal(true); 
   };
 
   const handleBackClick = () => {
@@ -190,11 +189,10 @@ const PanelAdministrador = () => {
         </button>
         <div className={styles.navbar}>
           <button>{`Mis monedas: ${coins}`}</button>
-          <button>+</button>
           <button onClick={handleUsrBtn}>USR PANEL</button>
         </div>
         <div className={styles.buttonContainer}>
-          <button className={styles.button} onClick={handleRouletteEditBtn}>EDITAR RULETA</button>
+          <button className={styles.button} onClick={handleRouletteEditBtn}>EDITAR CHEST</button>
           <button className={styles.button} onClick={handleCoinsClick}>EDITAR COINS</button>
           <button className={styles.button} onClick={handleRegistrosBtn}>REGISTROS</button>
           <button className={styles.button} style={{ backgroundColor: '#FF6347' }} onClick={handleRolesClick}>ROLES</button>
@@ -264,18 +262,18 @@ const PanelAdministrador = () => {
             <PrizeForm />
           </details>
           <details className={styles.details}>
-            <summary className={styles.summary}>Editar Ruletas</summary>
+            <summary className={styles.summary}>Editar Chest</summary>
             <RouletteConfig onSave={handleSaveRoulette} selectedRoulette={selectedRoulette} />
             <div className={styles.rouletteList}>
-              <h3>Ruletas existentes</h3>
+              <h3>Chest existentes</h3>
               <ul>
                 {roulettes.map((roulette) => (
                   <li key={roulette.id}>
                     <div>
                       <h4>{roulette.name}</h4>
                       <p>{roulette.description}</p>
-                      <button onClick={() => handleEditRoulette(roulette)}>Edit</button>
-                      <button onClick={() => handleDeleteRoulette(roulette.id)}>Delete</button>
+                      <button onClick={() => handleEditRoulette(roulette)}>Editar</button>
+                      <button onClick={() => handleDeleteRoulette(roulette.id)}>Eliminar</button>
                     </div>
                   </li>
                 ))}

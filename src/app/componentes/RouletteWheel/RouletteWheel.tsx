@@ -29,6 +29,9 @@ const RouletteWheel: React.FC<RouletteWheelProps> = ({ prizes, angle, onSpin }) 
     }
   }, [angle]);
 
+  const numberOfPrizes = prizes.length;
+  const segmentAngle = 360 / numberOfPrizes;
+
   return (
     <div className={styles.rouletteContainer}>
       <div className={styles.roulettePointer}></div>
@@ -41,8 +44,8 @@ const RouletteWheel: React.FC<RouletteWheelProps> = ({ prizes, angle, onSpin }) 
             key={prize.id}
             className={styles.segment}
             style={{
-              transform: `rotate(${index * (360 / prizes.length)}deg)`,
-              backgroundColor: `hsl(${index * (360 / prizes.length)}, 100%, 75%)`,
+              transform: `rotate(${index * segmentAngle}deg)`,
+              backgroundColor: `hsl(${index * (360 / numberOfPrizes)}, 100%, 75%)`,
             }}
           >
             <span className={styles.label}>{prize.name}</span>

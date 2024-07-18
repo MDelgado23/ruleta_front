@@ -1,3 +1,4 @@
+// RegistroForm.tsx
 'use client'
 
 import React, { useState } from 'react';
@@ -20,8 +21,13 @@ const FormularioRegistro = () => {
       await createUser(newUser);
       setExito('Usuario registrado exitosamente!');
       setError('');
-    } catch (error) {
-      setError('Fallo el registro');
+      router.push('/login')
+    } catch (error:any) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('Fallo el registro');
+      }
       setExito('');
       console.error('Error during registration:', error);
     }

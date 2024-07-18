@@ -22,7 +22,7 @@ const PrizeForm: React.FC = () => {
         const prizesData = await getPrizes();
         setPrizes(prizesData);
       } catch (error) {
-        console.error('Error fetching prizes:', error);
+        console.error('Error recuperando premios:', error);
       }
     };
 
@@ -32,7 +32,7 @@ const PrizeForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (name === '' || value === '') {
-      setMessage('Please fill out all fields.');
+      setMessage('Llena todos los campos.');
       return;
     }
 
@@ -44,11 +44,11 @@ const PrizeForm: React.FC = () => {
     try {
       if (editingPrize) {
         await updatePrize(editingPrize.id, newPrize);
-        setMessage('Prize updated successfully!');
+        setMessage('Premio actualizado correctamente!');
         setEditingPrize(null);
       } else {
         await createPrize(newPrize);
-        setMessage('Prize created successfully!');
+        setMessage('Premio creado correctamente!');
       }
 
       const prizesData = await getPrizes();
@@ -60,8 +60,8 @@ const PrizeForm: React.FC = () => {
         setShowEditModal(false);
       }
     } catch (error) {
-      console.error('Error creating/updating prize:', error);
-      setMessage('Failed to create/update prize.');
+      console.error('Error creando/actualizando premio:', error);
+      setMessage('Fallo la creacion/actualizacion del premio.');
     }
   };
 
@@ -76,16 +76,16 @@ const PrizeForm: React.FC = () => {
   const handleDelete = async (prize: Prize) => {
     try {
       await deletePrize(prize.id);
-      setMessage('Prize deleted successfully!');
+      setMessage('Premio eliminado correctamente!');
 
       const prizesData = await getPrizes();
       setPrizes(prizesData);
     } catch (error: any) {
       if (error.response && error.response.status === 409) {
-        alert('Cannot delete prize that is part of a roulette');
+        alert('El premio es parte de un Chest, no se puede borrar');
       } else {
-        console.error('Error deleting prize:', error);
-        setMessage('Failed to delete prize.');
+        console.error('Error borrando premio:', error);
+        setMessage('El borrado del premio fallo.');
       }
     }
   };
