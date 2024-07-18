@@ -1,9 +1,10 @@
 import LoginForm from '../componentes/LoginForm/LoginForm';
-import styles from './LoginPage.module.css'; 
+import BackButton from '../componentes/BackButton/backbutton';
 
 const LoginPage = () => {
   return (
-    <div className={styles['page-container']}>
+    <div>
+      <BackButton />
       <LoginForm />
     </div>
   );

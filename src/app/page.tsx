@@ -1,9 +1,17 @@
+'use client';
+
+import React from 'react';
 import RootLayout from './layout';
-import BotonCerrarSesion from './componentes/logoutbtn/logoutbtn';
+import Navbar from './componentes/NavBar/navbar';
 
 const HomePage = () => {
-  return ( <>
-    <RootLayout children={undefined}/> </>
+  return (
+    <RootLayout>
+      <Navbar />
+      <div>
+        <h1>Bienvenido a MUBet</h1>
+      </div>
+    </RootLayout>
   );
 };
 

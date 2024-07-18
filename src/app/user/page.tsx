@@ -1,10 +1,10 @@
-import BotonCerrarSesion from "../componentes/logoutbtn/logoutbtn";
-const UserPage = () => {
-    return <>
-<BotonCerrarSesion/>
-<h1>Pagina para usuarios normales</h1>;
-    </>
-  };
-  
-  export default UserPage;
-  
+'use client';
+
+import React from 'react';
+import UserPanel from '../componentes/UserPanel/UserPanel';
+
+const User = () => {
+  return <UserPanel />;
+};
+
+export default User;

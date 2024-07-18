@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { registrarUsuario } from '../../../services/api';
+import { createUser } from '../../../services/userService';
 import styles from '../LoginForm/LoginForm.module.css';  // Reutilizo CSS
 
 const FormularioRegistro = () => {
-  const [nombreUsuario, setNombreUsuario] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [exito, setExito] = useState('');
   const router = useRouter();
@@ -16,14 +16,14 @@ const FormularioRegistro = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const resultado = await registrarUsuario({ nombreUsuario, email, contrasena });
-      setExito('Usuario registrado con éxito!');
+      const newUser = { username, email, password };
+      await createUser(newUser);
+      setExito('Usuario registrado exitosamente!');
       setError('');
-      // Redirigir al usuario a la página de inicio de sesión después del registro
-      router.push('/login');
     } catch (error) {
       setError('Fallo el registro');
       setExito('');
+      console.error('Error during registration:', error);
     }
   };
 
@@ -37,8 +37,8 @@ const FormularioRegistro = () => {
           <input
             type="text"
             placeholder="Nombre de usuario"
-            value={nombreUsuario}
-            onChange={(e) => setNombreUsuario(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
@@ -55,8 +55,8 @@ const FormularioRegistro = () => {
           <input
             type="password"
             placeholder="Contraseña"
-            value={contrasena}
-            onChange={(e) => setContrasena(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
