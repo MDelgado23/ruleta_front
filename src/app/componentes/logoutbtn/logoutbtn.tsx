@@ -5,7 +5,8 @@ const BotonCerrarSesion = () => {
   const router = useRouter();
 
   const handlerCerrarSesion = () => {
-    localStorage.removeItem('token'); // Eliminar el token de localStorage
+    localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
     router.push('/login');
   };
 

@@ -1,44 +1,26 @@
-'use client';
-
+'use client'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { jwtDecode } from 'jwt-decode';
 
-interface DecodedToken {
-  role: string;
-  exp: number;
-}
-
-const withAuth = (ComponenteProtegido: React.ComponentType, rolRequerido: string) => {
+const withAuth = (WrappedComponent: React.ComponentType, allowedRoles: string[]) => {
   return (props: any) => {
     const router = useRouter();
     const [isAuthorized, setIsAuthorized] = useState(false);
 
     useEffect(() => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const decodedToken = jwtDecode<DecodedToken>(token);
-        const currentTime = Date.now() / 1000;
-        if (decodedToken.exp < currentTime) {
-          localStorage.removeItem('token');
-          router.push('/login');
-        } else {
-          if (decodedToken.role === rolRequerido) {
-            setIsAuthorized(true);
-          } else {
-            router.push('/unauthorized'); 
-          }
-        }
+      const role = localStorage.getItem('userRole');
+      if (role && allowedRoles.includes(role)) {
+        setIsAuthorized(true);
       } else {
         router.push('/login');
       }
-    }, [router, rolRequerido]);
+    }, [router, allowedRoles]);
 
     if (!isAuthorized) {
-      return <p>Cargando...</p>;
+      return null;
     }
 
-    return <ComponenteProtegido {...props} />;
+    return <WrappedComponent {...props} />;
   };
 };
 
